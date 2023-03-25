@@ -7,9 +7,14 @@
 - MoviePy
 
 ## Installation
-1. Clone or download the repository:
 
-`git clone https://github.com/bimsonz/long-to-short-cli.git`
+1. Go to the "Releases" tab in the [long-to-short-cli GitHub repository](https://github.com/bimsonz/long-to-short-cli/releases) and download the latest release source code as a ZIP or TAR.GZ archive.
+
+2. Extract the downloaded archive to a directory of your choice.
+
+3. Open a terminal or command prompt and navigate to the extracted directory:
+
+
 
 
 2. Navigate to the project directory:
