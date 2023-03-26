@@ -28,3 +28,7 @@ jobs:
       - name: Run tests
         run: |
           python3 -m unittest discover tests
+
+      - name: Coveralls GitHub Action
+        uses: coverallsapp/github-action@v2.0.0
+
