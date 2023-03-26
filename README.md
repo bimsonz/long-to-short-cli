@@ -1,48 +1,49 @@
-# long-to-short-cli Video Cropper
+# Long to Short CLI
 [![Run Tests](https://github.com/bimsonz/long-to-short-cli/actions/workflows/test.yml/badge.svg)](https://github.com/bimsonz/long-to-short-cli/actions/workflows/test.yml)
 
-`long-to-short-cli` is a user-friendly command-line tool that allows you to crop a video to a 9:16 aspect ratio and extract a specific portion based on start and end times. This tool is built using the powerful MoviePy library for video editing in Python. It's perfect for creating social media clips or quickly trimming videos while maintaining high-quality audio and video.
+A command-line tool for cropping and trimming video files. Easily extract a desired portion of a video and convert it to a vertical video (9:16 aspect ratio). This tool uses the [MoviePy](https://zulko.github.io/moviepy/) library to process videos. It's perfect for creating social media clips or quickly trimming videos while maintaining high-quality audio and video.
 
 ## Requirements
+
 - Python 3.6 or higher
-- MoviePy
 
 ## Installation
 
-1. Go to the "Releases" tab in the [long-to-short-cli GitHub repository](https://github.com/bimsonz/long-to-short-cli/releases) and download the latest release source code as a ZIP or TAR.GZ archive.
+1. Make sure you have Python 3.6 or higher installed on your system. If you don't have it installed, you can download it from the [official Python website](https://www.python.org/downloads/).
 
-2. Extract the downloaded archive to a directory of your choice.
+2. Go to the "Releases" tab in the [long-to-short-cli GitHub repository](https://github.com/bimsonz/long-to-short-cli/releases) and download the latest release source code as a ZIP or TAR.GZ archive.
 
-3. Open a terminal or command prompt and navigate to the extracted directory:
+3. Extract the downloaded archive to a directory of your choice.
 
+4. Open a terminal or command prompt and navigate to the extracted directory:
 
-
-
-2. Navigate to the project directory:
+5. Navigate to the project directory:
 
 `cd long-to-short-cli`
 
-
-3. Install the required dependencies:
+6. Install the required dependencies:
 
 `pip3 install -r requirements.txt`
 
 
+
 ## Usage
+
+To use the script, run the following command:
 
 1. Run the `long_to_short_cli.py` script with the following command:
 
-`python3 long_to_short_cli.py path/to/your/video.mp4 path/to/output/video.mp4 start_time end_time`
+`python3 long_to_short_cli.py my_video.mp4 cropped_video.mp4 10 40`
 
 
-Replace `path/to/your/video.mp4` with the path to the input video file, `path/to/output/video.mp4` with the path to the output video file, `start_time` with the start time of the clip (in seconds), and `end_time` with the end time of the clip (in seconds).
+Replace `input_video.mp4` with the path to the input video file, `output_video.mp4` with the desired output file path, and `start_time` and `end_time` with the desired start and end times (in seconds) of the clip you want to extract.
 
 Example:
 
 `python long_to_short_cli.py input_video.mp4 output_video.mp4 10 40`
 
+This command will extract a clip from `my_video.mp4` starting at 10 seconds and ending at 40 seconds, convert it to a 9:16 aspect ratio, and save the result as `cropped_video.mp4`.
 
-This command will create a cropped video with a 9:16 aspect ratio, extracting the portion between 10 and 40 seconds from the input video.
 
 ## License
 
