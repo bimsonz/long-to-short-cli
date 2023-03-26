@@ -1,7 +1,6 @@
 # Long to Short CLI
 [![PyPI version](https://badge.fury.io/py/long-to-short-cli.svg)](https://badge.fury.io/py/long-to-short-cli)
 [![Run Tests](https://github.com/bimsonz/long-to-short-cli/actions/workflows/test.yml/badge.svg)](https://github.com/bimsonz/long-to-short-cli/actions/workflows/test.yml)
-[![Coverage Status](https://coveralls.io/repos/github/bimsonz/long-to-short-cli/badge.svg?branch=main)](https://coveralls.io/github/bimsonz/long-to-short-cli?branch=main)
 
 A command-line tool for cropping and trimming video files. Easily extract a desired portion of a video and convert it to a vertical video (9:16 aspect ratio). This tool uses the [MoviePy](https://zulko.github.io/moviepy/) library to process videos. It's perfect for creating social media clips or quickly trimming videos while maintaining high-quality audio and video.
 
