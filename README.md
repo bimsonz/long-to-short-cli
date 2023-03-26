@@ -1,4 +1,5 @@
 # long-to-short-cli Video Cropper
+[![Run Tests](https://github.com/bimsonz/long-to-short-cli/actions/workflows/test.yml/badge.svg)](https://github.com/bimsonz/long-to-short-cli/actions/workflows/test.yml)
 
 `long-to-short-cli` is a user-friendly command-line tool that allows you to crop a video to a 9:16 aspect ratio and extract a specific portion based on start and end times. This tool is built using the powerful MoviePy library for video editing in Python. It's perfect for creating social media clips or quickly trimming videos while maintaining high-quality audio and video.
 
