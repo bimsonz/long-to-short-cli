@@ -4,7 +4,7 @@ from tempfile import TemporaryDirectory
 import sys
 import os
 from moviepy.editor import VideoFileClip, ColorClip, concatenate_videoclips
-from long_to_short_cli import process_video, time_str_to_seconds, crop_to_aspect_ratio, main
+from long_to_short_cli.long_to_short_cli import process_video, time_str_to_seconds, crop_to_aspect_ratio, main
 
 def generate_test_video(output_file, size=(1280, 720), aspect_ratio=(9, 16)):
     width, height = size
