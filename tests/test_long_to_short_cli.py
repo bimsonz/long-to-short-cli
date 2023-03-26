@@ -3,10 +3,10 @@ import os
 from moviepy.editor import VideoFileClip, ColorClip, concatenate_videoclips
 from long_to_short_cli import process_video, time_str_to_seconds
 
-def generate_test_video(output_file):
-    clip1 = ColorClip(size=(1280, 720), color=(255, 0, 0)).set_duration(3)
-    clip2 = ColorClip(size=(1280, 720), color=(0, 255, 0)).set_duration(3)
-    clip3 = ColorClip(size=(1280, 720), color=(0, 0, 255)).set_duration(3)
+def generate_test_video(output_file, size=(1280, 720)):
+    clip1 = ColorClip(size=size, color=(255, 0, 0)).set_duration(3)
+    clip2 = ColorClip(size=size, color=(0, 255, 0)).set_duration(3)
+    clip3 = ColorClip(size=size, color=(0, 0, 255)).set_duration(3)
 
     final_clip = concatenate_videoclips([clip1, clip2, clip3])
     final_clip.write_videofile(output_file, fps=24)
@@ -43,6 +43,23 @@ class TestLongToShortCLI(unittest.TestCase):
         expected_duration = time_str_to_seconds(self.end_time) - time_str_to_seconds(self.start_time)
         self.assertAlmostEqual(output_clip.duration, expected_duration, delta=0.1, msg="Output clip duration is incorrect")
         self.assertAlmostEqual(output_clip.aspect_ratio, 9 / 16, delta=0.01, msg="Output clip aspect ratio is incorrect")
+
+    def test_crop_to_aspect_ratio_landscape_input(self):
+        landscape_input_file = 'tests/input/landscape_video.mp4'
+        landscape_output_file = 'tests/output/landscape_video.mp4'
+
+        generate_test_video(landscape_input_file, size=(1280, 720))
+
+        process_video(landscape_input_file, landscape_output_file, self.start_time, self.end_time)
+
+        self.assertTrue(os.path.exists(landscape_output_file), "Output file not created")
+
+        output_clip = VideoFileClip(landscape_output_file)
+        self.assertAlmostEqual(output_clip.aspect_ratio, 9 / 16, delta=0.01, msg="Output clip aspect ratio is incorrect")
+
+        os.remove(landscape_input_file)
+        os.remove(landscape_output_file)
+
 
 if __name__ == '__main__':
     unittest.main()
