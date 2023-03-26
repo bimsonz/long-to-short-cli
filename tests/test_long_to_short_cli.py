@@ -125,5 +125,27 @@ class TestLongToShortCLI(unittest.TestCase):
         self.assertAlmostEqual(output_clip.duration, 5, delta=0.1, msg="Output clip duration is incorrect")
         self.assertAlmostEqual(output_clip.aspect_ratio, 9 / 16, delta=0.01, msg="Output clip aspect ratio is incorrect")
 
+    def test_crop_to_aspect_ratio_large_width(self):
+        size = (1920, 1080)
+        aspect_ratio = 21 / 9
+        generate_test_video(self.input_file, size=size)
+        input_clip = VideoFileClip(self.input_file)
+
+        cropped_clip = crop_to_aspect_ratio(input_clip, aspect_ratio)
+
+        self.assertAlmostEqual(cropped_clip.aspect_ratio, aspect_ratio, delta=0.01)
+        self.assertTrue(cropped_clip.w <= input_clip.w and cropped_clip.h <= input_clip.h)
+
+    def test_crop_to_aspect_ratio_large_height(self):
+        size = (1920, 1080)
+        aspect_ratio = 4 / 9
+        generate_test_video(self.input_file, size=size)
+        input_clip = VideoFileClip(self.input_file)
+
+        cropped_clip = crop_to_aspect_ratio(input_clip, aspect_ratio)
+
+        self.assertAlmostEqual(cropped_clip.aspect_ratio, aspect_ratio, delta=0.01)
+        self.assertTrue(cropped_clip.w <= input_clip.w and cropped_clip.h <= input_clip.h)
+
 if __name__ == '__main__':
     unittest.main()
