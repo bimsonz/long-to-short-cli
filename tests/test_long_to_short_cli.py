@@ -60,6 +60,37 @@ class TestLongToShortCLI(unittest.TestCase):
         os.remove(landscape_input_file)
         os.remove(landscape_output_file)
 
+    def test_crop_to_aspect_ratio_greater_than_9_16(self):
+        input_file = 'tests/input/greater_than_9_16_video.mp4'
+        output_file = 'tests/output/greater_than_9_16_video.mp4'
+
+        generate_test_video(input_file, size=(500, 720))
+
+        process_video(input_file, output_file, self.start_time, self.end_time)
+
+        self.assertTrue(os.path.exists(output_file), "Output file not created")
+
+        output_clip = VideoFileClip(output_file)
+        self.assertAlmostEqual(output_clip.aspect_ratio, 9 / 16, delta=0.01, msg="Output clip aspect ratio is incorrect")
+
+        os.remove(input_file)
+        os.remove(output_file)
+
+    def test_crop_to_aspect_ratio_equal_to_9_16(self):
+        input_file = 'tests/input/equal_to_9_16_video.mp4'
+        output_file = 'tests/output/equal_to_9_16_video.mp4'
+
+        generate_test_video(input_file, size=(720, 1280))
+
+        process_video(input_file, output_file, self.start_time, self.end_time)
+
+        self.assertTrue(os.path.exists(output_file), "Output file not created")
+
+        output_clip = VideoFileClip(output_file)
+        self.assertAlmostEqual(output_clip.aspect_ratio, 9 / 16, delta=0.01, msg="Output clip aspect ratio is incorrect")
+
+        os.remove(input_file)
+        os.remove(output_file)
 
 if __name__ == '__main__':
     unittest.main()
