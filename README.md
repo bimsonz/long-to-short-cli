@@ -1,5 +1,6 @@
 # Long to Short CLI
 [![PyPI version](https://badge.fury.io/py/long-to-short-cli.svg)](https://badge.fury.io/py/long-to-short-cli)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/long-to-short-cli)
 [![Run Tests](https://github.com/bimsonz/long-to-short-cli/actions/workflows/test.yml/badge.svg)](https://github.com/bimsonz/long-to-short-cli/actions/workflows/test.yml)
 [![Coverage Status](https://coveralls.io/repos/github/bimsonz/long-to-short-cli/badge.svg?branch=main&bust=1)](https://coveralls.io/github/bimsonz/long-to-short-cli?branch=main)
 
@@ -26,10 +27,10 @@ pip3 install long-to-short-cli
 
 To use the script, run the following command:
 
-1. Run the `long_to_short_cli.py` script with the following command:
+1. Run the `long-to-short-cli` script with the following command:
 
 ```
-python3 long_to_short_cli.py my_video.mp4 cropped_video.mp4 10 40
+long-to-short-cli my_video.mp4 cropped_video.mp4 10 40
 ```
 
 Replace `input_video.mp4` with the path to the input video file, `output_video.mp4` with the desired output file path, and `start_time` and `end_time` with the desired start and end times of the clip in `HH:MM:SS`, `MM:SS`, or `SS` format.
@@ -37,7 +38,7 @@ Replace `input_video.mp4` with the path to the input video file, `output_video.m
 Example:
 
 ```
-python3 long_to_short_cli.py my_video.mp4 cropped_video.mp4 00:00:10 00:00:40
+long-to-short-cli my_video.mp4 cropped_video.mp4 00:00:10 00:00:40
 ```
 
 This command will extract a clip from `my_video.mp4` starting at 10 seconds (00:00:10) and ending at 40 seconds (00:00:40), convert it to a 9:16 aspect ratio, and save the result as `cropped_video.mp4`.
