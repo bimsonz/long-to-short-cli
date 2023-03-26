@@ -35,14 +35,13 @@ To use the script, run the following command:
 
 `python3 long_to_short_cli.py my_video.mp4 cropped_video.mp4 10 40`
 
-
-Replace `input_video.mp4` with the path to the input video file, `output_video.mp4` with the desired output file path, and `start_time` and `end_time` with the desired start and end times (in seconds) of the clip you want to extract.
+Replace `input_video.mp4` with the path to the input video file, `output_video.mp4` with the desired output file path, and `start_time` and `end_time` with the desired start and end times of the clip in `HH:MM:SS`, `MM:SS`, or `SS` format.
 
 Example:
 
-`python long_to_short_cli.py input_video.mp4 output_video.mp4 10 40`
+`python3 long_to_short_cli.py my_video.mp4 cropped_video.mp4 00:00:10 00:00:40`
 
-This command will extract a clip from `my_video.mp4` starting at 10 seconds and ending at 40 seconds, convert it to a 9:16 aspect ratio, and save the result as `cropped_video.mp4`.
+This command will extract a clip from `my_video.mp4` starting at 10 seconds (00:00:10) and ending at 40 seconds (00:00:40), convert it to a 9:16 aspect ratio, and save the result as `cropped_video.mp4`.
 
 
 ## License
