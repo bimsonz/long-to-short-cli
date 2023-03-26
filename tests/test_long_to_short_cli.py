@@ -1,7 +1,7 @@
 import unittest
 import os
 from moviepy.editor import VideoFileClip, ColorClip, concatenate_videoclips
-from long_to_short_cli import process_video
+from long_to_short_cli import process_video, time_str_to_seconds
 
 def generate_test_video(output_file):
     clip1 = ColorClip(size=(1280, 720), color=(255, 0, 0)).set_duration(3)
@@ -15,8 +15,8 @@ class TestLongToShortCLI(unittest.TestCase):
     def setUp(self):
         self.input_file = 'tests/input/video.mp4'
         self.output_file = 'tests/output/video.mp4'
-        self.start_time = 2
-        self.end_time = 7
+        self.start_time = '00:00:02'
+        self.end_time = '00:00:07'
 
         input_dir = os.path.dirname(self.input_file)
         output_dir = os.path.dirname(self.output_file)
@@ -35,15 +35,14 @@ class TestLongToShortCLI(unittest.TestCase):
         if os.path.exists(self.output_file):
             os.remove(self.output_file)
 
-
     def test_process_video(self):
         process_video(self.input_file, self.output_file, self.start_time, self.end_time)
         self.assertTrue(os.path.exists(self.output_file), "Output file not created")
 
         output_clip = VideoFileClip(self.output_file)
-        self.assertAlmostEqual(output_clip.duration, self.end_time - self.start_time, delta=0.1, msg="Output clip duration is incorrect")
+        expected_duration = time_str_to_seconds(self.end_time) - time_str_to_seconds(self.start_time)
+        self.assertAlmostEqual(output_clip.duration, expected_duration, delta=0.1, msg="Output clip duration is incorrect")
         self.assertAlmostEqual(output_clip.aspect_ratio, 9 / 16, delta=0.01, msg="Output clip aspect ratio is incorrect")
 
 if __name__ == '__main__':
     unittest.main()
-
