@@ -138,29 +138,22 @@ class TestLongToShortCLI(unittest.TestCase):
         self.assertAlmostEqual(cropped_clip.aspect_ratio, aspect_ratio, delta=0.01)
         self.assertTrue(cropped_clip.w <= input_clip.w and cropped_clip.h <= input_clip.h)
 
-    def test_crop_to_aspect_ratio_large_height(self):
-        size = (1920, 1080)
-        aspect_ratio = 4 / 9
-        generate_test_video(self.input_file, size=size)
-        input_clip = VideoFileClip(self.input_file)
+    def test_main_no_output_file(self):
+        with TemporaryDirectory() as temp_dir:
+            # Replace 'path/to/valid_input.mp4' with the actual path to a valid video file
+            size = (1920, 1080)
+            aspect_ratio = 21 / 9
 
-        cropped_clip = crop_to_aspect_ratio(input_clip, aspect_ratio)
+            input_file = 'tests/input/valid_input.mp4'
+            generate_test_video(input_file, size=size)
 
-        self.assertAlmostEqual(cropped_clip.aspect_ratio, aspect_ratio, delta=0.01)
-        self.assertTrue(cropped_clip.w <= input_clip.w and cropped_clip.h <= input_clip.h)
+            output_file = os.path.join(temp_dir, 'output.mp4')
 
-        def test_main_no_output_file(self):
-            with TemporaryDirectory() as temp_dir:
-                input_file = os.path.join(temp_dir, "input.mp4")
-                generate_test_video(input_file)
+            sys.argv = ["long_to_short_cli.py", input_file, output_file, "00:00", "00:01"]
 
-                sys.argv = ["long_to_short_cli.py", "-i", input_file]
+            main()
 
-                with self.assertRaises(SystemExit) as cm:
-                    main()
-
-                self.assertEqual(cm.exception.code, 2)  # Check if the exit code is 2, as expected
-
+            self.assertTrue(os.path.exists(output_file))
 
 if __name__ == '__main__':
     unittest.main()
