@@ -147,5 +147,17 @@ class TestLongToShortCLI(unittest.TestCase):
         self.assertAlmostEqual(cropped_clip.aspect_ratio, aspect_ratio, delta=0.01)
         self.assertTrue(cropped_clip.w <= input_clip.w and cropped_clip.h <= input_clip.h)
 
+    def test_main_no_output_file(self):
+        with TemporaryDirectory() as temp_dir:
+            input_file = os.path.join(temp_dir, "input.mp4")
+            generate_test_video(input_file)
+            default_output_name = "output.mp4"
+            output_file = os.path.join(temp_dir, default_output_name)
+
+            sys.argv = ["long_to_short_cli.py", "-i", input_file]
+            main()
+
+            self.assertTrue(os.path.isfile(output_file))
+
 if __name__ == '__main__':
     unittest.main()
